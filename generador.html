@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Generador de Enlaces Protegidos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(186deg, #0045d1, #0087d1);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: rgba(0,0,0,0.7);
+      padding: 30px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      text-align: left;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #007bff;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      background-color: #0087d1;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #000080;
+    }
+    #output-container {
+      margin-top: 20px;
+      display: none;
+      word-break: break-word;
+      background-color: #1f1f1f;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    #output-iframe {
+      margin-top: 20px;
+      width: 100%;
+      height: 240px;
+      border-radius: 8px;
+      border: none;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Generador de Enlaces Protegidos</h2>
+    <label for="urlInput">Pega el enlace real aquí:</label>
+    <input type="text" id="urlInput" placeholder="https://vidhide.com/..." />
+    <button id="generateBtn">Generar enlace protegido</button>
+
+    <div id="output-container">
+      <strong>Enlace generado:</strong>
+      <div id="outputUrl"></div>
+    </div>
+
+    <iframe id="output-iframe" sandbox="allow-scripts allow-same-origin allow-popups" allowfullscreen></iframe>
+  </div>
+
+  <script>
+    const generateBtn = document.getElementById('generateBtn');
+    const urlInput = document.getElementById('urlInput');
+    const outputContainer = document.getElementById('output-container');
+    const outputUrl = document.getElementById('outputUrl');
+    const outputIframe = document.getElementById('output-iframe');
+
+    generateBtn.addEventListener('click', () => {
+      const url = urlInput.value.trim();
+      if (!url) {
+        alert('Por favor, ingresa una URL válida.');
+        return;
+      }
+      // Encriptar con base64
+      const encoded = btoa(url);
+
+      // Crear URL apuntando al desencriptador
+      // Cambia "TU_USUARIO" y "TU_REPOSITORIO" por los tuyos
+      const baseURL = 'https://TU_USUARIO.github.io/TU_REPOSITORIO/desencriptador.html';
+      const generatedLink = `${baseURL}?r=${encoded}`;
+
+      outputUrl.textContent = generatedLink;
+      outputContainer.style.display = 'block';
+
+      // Mostrar iframe con el video reproducido
+      outputIframe.src = generatedLink;
+      outputIframe.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
