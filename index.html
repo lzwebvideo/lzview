@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Generador de Enlaces Protegidos</title>
+  <link rel="icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh94F4aMb6ID87hLBxk7nK8BwxwfmbyTQAhvuiQdsGUizwynY58mjAptjDVc6_Bv4RrtMUOQs6enLyk3o_dFWZia4PUi0x0LsXbWAe_uFPXXMRdEwN_sCr2Y8sdB4A-WvtrSMf9gdBlk2ean8bq7nCzjdGWjEbfwUOh9jslOMO6uefFmcle1yEGKCmKYgE/s1600/script%20Servers%20%28no-ads%29-plantillasseo.online%20%284%29.png" type="image/png" />
+  <title>Script No-ADS Lz</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -71,11 +72,23 @@
       font-weight: bold;
       display: none;
     }
+    #preview-encoded {
+      margin-top: 10px;
+      background: #222;
+      padding: 8px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 13px;
+      user-select: all;
+      word-break: break-all;
+      color: #ccc;
+      display: none;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>Generador de Enlaces Protegidos</h2>
+    <h2>Script No-ADS Lz</h2>
     <label for="urlInput">Pega el enlace real aquí:</label>
     <input type="text" id="urlInput" placeholder="https://vidhide.com/..." />
     <button id="generateBtn">Generar enlace protegido</button>
@@ -85,6 +98,7 @@
       <div id="outputUrl"></div>
       <button id="copyBtn">Copiar enlace</button>
       <div id="copy-message">Enlace copiado al portapapeles</div>
+      <div id="preview-encoded"></div>
     </div>
   </div>
 
@@ -95,9 +109,10 @@
     const outputUrl = document.getElementById('outputUrl');
     const copyBtn = document.getElementById('copyBtn');
     const copyMessage = document.getElementById('copy-message');
+    const previewEncoded = document.getElementById('preview-encoded');
 
-    // Cambia esta URL a la ruta donde subirás el desencriptador en GitHub
-  const desencriptadorBaseURL = 'https://lzwebvideo.github.io/lzview/desencriptador.html';
+    // Cambiar por la ruta de tu desencriptador
+    const desencriptadorBaseURL = 'https://lzwebvideo.github.io/lzview/desencriptador.html';
 
     generateBtn.addEventListener('click', () => {
       const url = urlInput.value.trim();
@@ -111,6 +126,9 @@
       outputUrl.textContent = generatedLink;
       outputContainer.style.display = 'block';
       copyMessage.style.display = 'none';
+
+      previewEncoded.textContent = encoded;
+      previewEncoded.style.display = 'block';
     });
 
     copyBtn.addEventListener('click', () => {
