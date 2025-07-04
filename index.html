@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Script NO-ADS</title>
+  <title>Generador de Enlace Seguro</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -83,12 +83,11 @@
     }
   </style>
 </head>
-  <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
 <body>
   <div class="container">
-    <h2>Lz Script NO-ADS</h2>
-    <label for="urlInput">Pega el enlace real aquí:</label>
-    <input type="text" id="urlInput" placeholder="https://vidhide.com/..." />
+    <h2>Lz Script NO-ADS - Generador</h2>
+    <label for="urlInput">Pega el enlace real (MP4 o M3U8):</label>
+    <input type="text" id="urlInput" placeholder="https://ejemplo.com/video.mp4" />
     <button id="generateBtn">Generar enlace protegido</button>
 
     <div id="output-container">
@@ -112,12 +111,15 @@
     const desencriptadorBaseURL = 'https://lzwebvideo.github.io/lzview/desencriptador.html';
 
     generateBtn.addEventListener('click', () => {
-      const url = urlInput.value.trim();
-      if (!url) {
+      const videoUrl = urlInput.value.trim();
+      if (!videoUrl) {
         alert('Por favor, ingresa una URL válida.');
         return;
       }
-      const encoded = btoa(url);
+
+      const playerUrl = `https://lzrdrgz01.github.io/web?player=jwpl&provider=rand&format=video/mp4&link=${encodeURIComponent(videoUrl)}`;
+
+      const encoded = btoa(playerUrl);
       const generatedLink = `${desencriptadorBaseURL}?r=${encoded}`;
 
       outputUrl.textContent = generatedLink;
