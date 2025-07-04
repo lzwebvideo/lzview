@@ -42,7 +42,6 @@
       const params = new URLSearchParams(window.location.search);
       return params.get(param);
     }
-
     const encoded = getQueryParam('r');
     const container = document.getElementById('videoContainer');
 
@@ -50,17 +49,8 @@
       try {
         const decodedUrl = atob(encoded);
         const iframe = document.createElement('iframe');
-        let finalUrl = decodedUrl;
-
-        if (!document.referrer.includes('https://zinecia.github.io/')) {
-          const expiryTime = Math.floor(Date.now() / 1000) + (12 * 60 * 60);
-          const hasToken = finalUrl.includes('token=');
-          if (!hasToken) {
-            finalUrl += `&token=${expiryTime}`;
-          }
-        }
-
-        iframe.src = finalUrl;
+        iframe.src = decodedUrl;
+        // Sandbox para limitar comportamientos no deseados
         iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin');
         iframe.setAttribute('allowfullscreen', '');
         container.appendChild(iframe);
